@@ -1,39 +1,52 @@
-enum OrderStatus{
-    PENDING,PROCESSING,SHIPPED,DELIVERED,CANCELLED;
+enum Role{
+    USER(1),MODERATOR(2),ADMIN(3);
+    private int level;
+
+    Role(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }
 
 public class Main {
     static void main() {
-        OrderStatus O1 = OrderStatus.PENDING;
-        System.out.println(O1);
+        System.out.println("these are the available roles : ");
+        for(Role r: Role.values()){
+            System.out.println(r);
+        }
 
-        OrderStatus O2 = OrderStatus.SHIPPED;
+        Role r1 = Role.MODERATOR;
+        System.out.println("this is the role "+r1+"  this is the permisssion level of this role : "+r1.getLevel());
 
-                switch(O2){
-                    case PENDING:
-                        System.out.println("the order is pending..");
-                        break;
+        Role r2 = Role.ADMIN;
 
-                    case SHIPPED:
-                        System.out.println("the order is shipped");
-                        break;
+        switch (r2){
+            case USER:
+                System.out.println("the role is user: ");
+                break;
+            case ADMIN:
+                System.out.println("the role is Admin  ");
+                break;
+            case MODERATOR:
+                System.out.println("the role is Moderator: ");
+                break;
+            default:
+                System.out.println("please try again..");
+        }
 
-                    case PROCESSING:
-                        System.out.println("the order is being processed..");
-                        break;
+        String rolename = "MODERATOR";
 
-                    case DELIVERED:
-                        System.out.println("the order is already delivered...");
-                        break;
+        Role r3 = Role.valueOf(rolename);
 
-                    case CANCELLED:
-                        System.out.println("the order was cancelled...");
-                        break;
-
-                    default:
-                        System.out.println("please try again.....");
-                }
-
+        System.out.println(r3);
+        System.out.println(r3.getLevel());
 
     }
 }
